@@ -23,5 +23,13 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharatdahiya/socially-backend-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bharatdahiya/socially-backend-api/issues"
+  },
+  "homepage": "https://github.com/bharatdahiya/socially-backend-api#readme",
   "description": ""
 }
