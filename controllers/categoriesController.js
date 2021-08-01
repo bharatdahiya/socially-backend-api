@@ -12,7 +12,8 @@ const getCategories = async (req, res, next) => {
     }
 
 
-    res.status(200).json({ categories: (categories || []).map(u => u.toObject({ getters: true })) });
+    res.status(200).json({ categories: (categories || []).map(u => u.toObject({ getters: true }))});
+    
 };
 
 
