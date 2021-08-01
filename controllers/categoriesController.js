@@ -16,13 +16,20 @@ const getCategories = async (req, res, next) => {
 };
 
 
-// const createCategory = async (req, res, next) => {
-//     const error = validationResult(req);
+const createCategory = async (req, res, next) => {
+    //const error = validationResult(req);
+    try{let cat = new Category({name:'Men'});
+    
+    await cat.save();
+    res.status(201).json({ message: "New User added", category: cat.toObject({ getters: true }) });
+     } catch (error) {
+             return next(new HttpError('category is failed, please try again later.' + error.message, 422))
+         }
+}
 //     if (!error.isEmpty()) {
 //         return next(new httpError('Invalid inputs passed. Please check. ', 422));
 //     }
 //     const { name } = req.body;
-
 //     try {
 //         const existingUser = await Category.findOne({ name: name });
 //         if (existingUser) {
@@ -39,4 +46,4 @@ const getCategories = async (req, res, next) => {
 // }
 
 exports.getCategories = getCategories;
-// exports.createCategory = createCategory;
+exports.createCategory = createCategory;

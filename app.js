@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const categoriesRoutes = require('./routes/categoriesRoutes');
-// const productRoutes = require('./routes/productRoutes');
+const productRoutes = require('./routes/productRoutes');
+//const cartRoutes = require('./routes/cartRoutes');
 // const userRoutes = require('./routes/users-routes');
 const httpError = require('./models/http-error');
 
@@ -12,8 +13,8 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use('/api/categories', categoriesRoutes);
-//app.use('/api/products', productRoutes);
-//app.use('/api/users/cart', userRoutes);
+app.use('/api/products', productRoutes);
+//app.use('/api/cart', cartRoutes);
 
 app.use((req, res, next) => {
     const error = new httpError('Could not find the route', 404);
