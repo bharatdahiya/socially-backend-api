@@ -2,7 +2,7 @@ const httpError = require('../models/http-error');
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 
-// const getCoordsForAddres = require('../util/location');
+const getCoordsForAddres = require('../util/location'); 
 const Place = require('../models/place');
 const User = require('../models/user');
 
@@ -45,15 +45,15 @@ const createPlace = async (req, res, next) => {
         next(new httpError('Invalid inputs passed. Please check. ', 422));
     }
 
-    const { title, description, coordinates, address, creator } = req.body;
+    const { title, description, address, creator } = req.body;
 
     const createdPlace = new Place({
         title,
         description,
         address,
-        location: coordinates,
+        location: await getCoordsForAddres(address),
         creator,
-        image: 'https://images.unsplash.com/photo-1575198850636-00f8f3c379aa?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjIyNjE2NjI1&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600'
+        image
     });
 
     let isUserExistsAlready;
